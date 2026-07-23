@@ -1,0 +1,18 @@
+category,tonnage,unit_location,status,plan_ids,actions_allowed
+Heating,,,no_category_data,,
+Cooling with Heat Pump,,,no_category_data,,
+Cooling with Electric Heat,2,Attic Horizontal,has_plans,"cooling_better,heating_better,cooling_best","go,call,visit"
+Cooling with Electric Heat,2,Closet Vertical,has_plans,"cooling_better,heating_better,cooling_best","go,call,visit"
+Cooling with Electric Heat,2,Garage Vertical,no_plans_found,,
+Cooling with Electric Heat,2.5,Attic Horizontal,has_plans,"cooling_better,heating_better,cooling_best","go,call,visit"
+Cooling with Electric Heat,2.5,Closet Vertical,has_plans,"cooling_better,heating_better,cooling_best","go,call,visit"
+Cooling with Electric Heat,2.5,Garage Vertical,no_plans_found,,
+Cooling with Electric Heat,3,Attic Horizontal,has_plans,"cooling_better,heating_better,cooling_best","go,call,visit"
+Cooling with Electric Heat,3,Closet Vertical,has_plans,"cooling_better,heating_better,cooling_best","go,call,visit"
+Cooling with Electric Heat,3,Garage Vertical,no_plans_found,,
+Cooling with Electric Heat,3.5,Attic Horizontal,has_plans,"cooling_better,heating_better,cooling_best","go,call,visit"
+Cooling with Electric Heat,3.5,Closet Vertical,has_plans,"cooling_better,heating_better,cooling_best","go,call,visit"
+Cooling with Electric Heat,3.5,Garage Vertical,no_plans_found,,
+Cooling with Electric Heat,4,Attic Horizontal,has_plans,"cooling_better,heating_better,cooling_best","go,call,visit"
+Cooling with Electric Heat,4,Closet Vertical,has_plans,"cooling_better,heating_better,cooling_best","go,call,visit"
+Cooling with Electric Heat,4,Garage Vertical,no_plans_found,,

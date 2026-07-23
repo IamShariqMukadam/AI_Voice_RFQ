@@ -1,0 +1,51 @@
+# --- Secrets ---
+.env
+.env.*
+!.env.example
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Virtual environments ---
+venv/
+.venv/
+env/
+ENV/
+
+# --- App runtime data (regenerated locally, not source) ---
+leads_fallback.jsonl
+quote_assistant.sqlite3
+quote_assistant.sqlite3-*
+backend/stt_debug/
+*.log
+
+# --- Frontend / Node (in case tooling is added later) ---
+node_modules/
+dist/
+.parcel-cache/
+
+# --- Editor / IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+
+# --- Agent/tooling scratch dirs ---
+.agents/
+.codex/
+
+service_account.json
+project15Jul-complete-working-demo.tar.gz
+project23JulPerfectlyWorking.tar.gz

@@ -1,0 +1,4 @@
+plan_id,name,monthly_price,price_period,features
+cooling_better,Cooling - Better,600,5 month,"HSPF- Up to 13 HSPF, or Heating seasonal performance factor.;SEER- Up to 20 SEER, or Seasonal Energy Efficiency Ratio.;Sound Level- Quietest system option."
+heating_better,Heating - Better,750,month,"HSPF- Up to 13 HSPF, or Heating seasonal performance factor.;SEER- Up to 20 SEER, or Seasonal Energy Efficiency Ratio.;Sound Level- Quietest system option."
+cooling_best,Cooling - Best,900,month,"HSPF- Up to 13 HSPF, or Heating seasonal performance factor.;SEER- Up to 20 SEER, or Seasonal Energy Efficiency Ratio.;Sound Level- Quietest system option."

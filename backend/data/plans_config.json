@@ -1,0 +1,41 @@
+{
+  "plans": {
+    "cooling_better": {
+      "name": "Cooling - Better",
+      "price_display": "$600 / 5 months",
+      "monthly_price": 600,
+      "product_name": "Inverter Heat Pump, Variable Speed Electric Air Handler",
+      "features": ["Up to 13 HSPF (Heating Seasonal Performance Factor)"]
+    },
+    "heating_better": {
+      "name": "Heating - Better",
+      "price_display": "$750 / month",
+      "monthly_price": 750,
+      "product_name": "Inverter Heat Pump w/ Variable Speed Electric Air Handler",
+      "features": ["Up to 13 HSPF (Heating Seasonal Performance Factor)"]
+    },
+    "cooling_best": {
+      "name": "Cooling - Best",
+      "price_display": "$900 / month",
+      "monthly_price": 900,
+      "product_name": "Inverter Heat Pump w/ Variable Speed Electric Air Handler",
+      "features": ["Up to 13 HSPF (Heating Seasonal Performance Factor)"]
+    }
+  },
+
+  "availability_matrix": {
+    "cooling_electric_heat": {
+      "2_ton": {
+        "attic_horizontal": ["cooling_better", "heating_better", "cooling_best"],
+        "closet_vertical": ["cooling_better", "heating_better", "cooling_best"],
+        "garage_vertical": []
+      },
+      "2.5_ton": { "attic_horizontal": [], "closet_vertical": [], "garage_vertical": [] },
+      "3_ton":   { "attic_horizontal": [], "closet_vertical": [], "garage_vertical": [] },
+      "3.5_ton": { "attic_horizontal": [], "closet_vertical": [], "garage_vertical": [] },
+      "4_ton":   { "attic_horizontal": [], "closet_vertical": [], "garage_vertical": [] }
+    }
+  },
+
+  "_fill_me_in": "Only 2_ton is populated, taken straight from your screenshots (attic + closet both showed all 3 plans, garage showed none). The other four tonnages are empty on purpose - not guessed. Add rows the same shape: category -> tonnage -> location -> [plan ids]. Plan ids must match a key under 'plans' above. See README.md for the fast way to hand me this data."
+}

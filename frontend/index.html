@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Instant Quote — Voice Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Manrope:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+
+  <header class="app-header">
+    <div>
+      <div class="brand">Polar<span>Express</span></div>
+      <div class="brand-sub">Instant quote — voice assistant</div>
+    </div>
+    <div class="header-actions">
+      <button id="replay-btn" class="header-btn" type="button">Replay</button>
+      <button id="new-session-btn" class="header-btn" type="button">New</button>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <section class="conversation-panel">
+
+      <div class="dial-wrap">
+        <svg class="dial-svg" viewBox="0 0 200 200" aria-hidden="true">
+          <line class="dial-tick" x1="100" y1="15" x2="100" y2="24" />
+          <line class="dial-tick" x1="142.5" y1="26.4" x2="138" y2="34.2" />
+          <line class="dial-tick" x1="173.6" y1="57.5" x2="165.8" y2="62" />
+          <line class="dial-tick" x1="185" y1="100" x2="176" y2="100" />
+          <line class="dial-tick" x1="173.6" y1="142.5" x2="165.8" y2="138" />
+          <line class="dial-tick" x1="142.5" y1="173.6" x2="138" y2="165.8" />
+          <line class="dial-tick" x1="100" y1="185" x2="100" y2="176" />
+          <line class="dial-tick" x1="57.5" y1="173.6" x2="62" y2="165.8" />
+          <line class="dial-tick" x1="26.4" y1="142.5" x2="34.2" y2="138" />
+          <line class="dial-tick" x1="15" y1="100" x2="24" y2="100" />
+          <line class="dial-tick" x1="26.4" y1="57.5" x2="34.2" y2="62" />
+          <line class="dial-tick" x1="57.5" y1="26.4" x2="62" y2="34.2" />
+          <circle cx="100" cy="100" r="85" fill="none" stroke="var(--steel-light)" stroke-width="2" />
+          <circle id="dial-arc" class="dial-arc" cx="100" cy="100" r="85" fill="none"
+                  stroke-dasharray="534" stroke-dashoffset="534"
+                  transform="rotate(-90 100 100)" />
+        </svg>
+        <button id="mic-btn" class="mic-btn idle" aria-label="Tap to talk">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+        </button>
+      </div>
+      <div class="dial-status" id="dial-status">Connecting…</div>
+
+      <div class="transcript" id="transcript" aria-live="polite"></div>
+
+      <div class="stage-ui" id="stage-ui"></div>
+    </section>
+
+    <aside class="progress-rail" id="progress-rail">
+      <h2>Your details</h2>
+      <div class="reading" data-field="full_name"><span class="reading-label">Full name</span><span class="reading-value empty">—</span></div>
+      <div class="reading" data-field="phone"><span class="reading-label">Phone</span><span class="reading-value empty">—</span></div>
+      <div class="reading" data-field="email"><span class="reading-label">Email</span><span class="reading-value empty">—</span></div>
+      <div class="reading" data-field="street"><span class="reading-label">Street</span><span class="reading-value empty">—</span></div>
+      <div class="reading" data-field="city"><span class="reading-label">City</span><span class="reading-value empty">—</span></div>
+      <div class="reading" data-field="zip"><span class="reading-label">Zip</span><span class="reading-value empty">—</span></div>
+      <div class="reading" data-field="category"><span class="reading-label">System type</span><span class="reading-value empty">—</span></div>
+      <div class="reading" data-field="tonnage"><span class="reading-label">Tonnage</span><span class="reading-value empty">—</span></div>
+      <div class="reading" data-field="location"><span class="reading-label">Air handler</span><span class="reading-value empty">—</span></div>
+      <div class="reading" data-field="plan_choice"><span class="reading-label">Plan</span><span class="reading-value empty">—</span></div>
+      <div class="reading" data-field="plan_action"><span class="reading-label">Next step</span><span class="reading-value empty">—</span></div>
+    </aside>
+  </main>
+
+  <div class="footer-note">Voice not working? Every question also has a type-or-tap option, or switch to push-to-talk above.</div>
+</div>
+<script src="realtime-widget.js"></script>
+</body>
+</html>

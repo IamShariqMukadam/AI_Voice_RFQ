@@ -1,0 +1,444 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Manrope:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --charcoal: #14181D;
+  --warm-white: #F6F4F0;
+  --surface: #FFFFFF;
+  --copper: #B9673A;
+  --frost: #2E8C93;
+  --steel: #7B8794;
+  --steel-light: #D8DCE1;
+  --success: #4A8B5C;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--warm-white);
+  color: var(--charcoal);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app { max-width: 1040px; margin: 0 auto; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+
+.app-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 32px; border-bottom: 1px solid var(--steel-light);
+}
+.brand { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: 0.02em; }
+.brand span { color: var(--copper); }
+.brand-sub { font-family: var(--font-mono); font-size: 12px; color: var(--steel); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+.header-actions { display: flex; align-items: center; gap: 8px; }
+.header-btn {
+  min-height: 36px; padding: 8px 12px; border-radius: var(--radius-sm);
+  border: 1.5px solid var(--steel-light); background: var(--surface); color: var(--charcoal);
+  font-family: var(--font-body); font-size: 13px; font-weight: 700; cursor: pointer;
+}
+.header-btn:hover { border-color: var(--copper); }
+
+.app-main { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) 300px; }
+
+@media (max-width: 780px) {
+  .app-main { grid-template-columns: 1fr; }
+  .progress-rail { border-left: none; border-top: 1px solid var(--steel-light); }
+}
+
+.conversation-panel { padding: 48px 32px; display: flex; flex-direction: column; align-items: center; gap: 24px; min-width: 0; }
+
+.dial-wrap { position: relative; width: clamp(170px, 26vw, 220px); aspect-ratio: 1; }
+.dial-svg { width: 100%; height: 100%; }
+.dial-tick { stroke: var(--steel-light); stroke-width: 2; }
+.dial-arc {
+  stroke: var(--steel); stroke-width: 6; stroke-linecap: round;
+  transition: stroke 0.4s ease, stroke-dashoffset 0.12s linear;
+}
+.dial-arc.mode-heat { stroke: var(--copper); }
+.dial-arc.mode-cool { stroke: var(--frost); }
+.dial-arc.mode-done { stroke: var(--success); }
+
+.mic-btn {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 96px; height: 96px; border-radius: 50%; border: none;
+  background: var(--charcoal); color: var(--warm-white);
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  transition: transform 0.15s ease, background 0.3s ease;
+}
+.mic-btn:hover { transform: translate(-50%, -50%) scale(1.04); }
+.mic-btn:active { transform: translate(-50%, -50%) scale(0.97); }
+.mic-btn.listening { background: var(--copper); animation: pulse 1.4s ease-in-out infinite; }
+.mic-btn.speaking { background: var(--frost); }
+.mic-btn.thinking { background: var(--steel); }
+.mic-btn svg { width: 34px; height: 34px; }
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(185,103,58,0.35); }
+  50% { box-shadow: 0 0 0 14px rgba(185,103,58,0); }
+}
+
+.dial-status { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--steel); }
+
+.transcript { min-height: 56px; max-width: 460px; text-align: center; font-size: 19px; line-height: 1.5; font-weight: 500; }
+.transcript .heard { display: block; margin-top: 8px; font-size: 14px; font-weight: 400; color: var(--steel); font-style: italic; }
+
+.stage-ui { width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+
+.options-row { display: flex; align-items: flex-start; gap: 10px; }
+.options-row .option-grid { flex: 1; }
+
+.option-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.option-card {
+  background: var(--surface); border: 1.5px solid var(--steel-light); border-radius: var(--radius-md);
+  padding: 16px; font-family: var(--font-body); font-weight: 500; font-size: 14px; color: var(--charcoal);
+  cursor: pointer; text-align: left; transition: border-color 0.15s ease, transform 0.1s ease;
+  /* BUG FIX (centering): a fixed grid-template-columns always reserved
+     3 equal columns and left-filled them, so a 2-option prompt (e.g.
+     review_summary's "Looks good" / "No, I need to change something")
+     sat flush left with dead space on the right. flex-basis + wrap lets
+     any number of cards (2, 3, 5...) size themselves and center as a
+     group instead of being pinned to a rigid column count. */
+  flex: 1 1 180px; max-width: 220px;
+}
+.option-card-plan { flex-basis: 240px; max-width: 280px; }
+.option-card:hover { border-color: var(--copper); transform: translateY(-1px); }
+
+.option-card-plan { display: flex; flex-direction: column; gap: 8px; }
+.plan-card-name { font-family: var(--font-display); font-weight: 600; font-size: 15px; }
+.plan-card-price { color: var(--copper); font-weight: 600; font-size: 13px; }
+.plan-card-features { margin: 0; padding-left: 18px; font-size: 12px; font-weight: 400; color: var(--steel); line-height: 1.5; }
+.plan-card-features li { margin-bottom: 2px; }
+
+.back-btn { align-self: flex-start; }
+
+/* ---- schedule_appointment calendar widget ---- */
+.options-row .schedule-widget { flex: 1; min-width: 0; }
+.schedule-widget {
+  display: flex; flex-wrap: wrap; gap: 26px;
+  background: var(--surface); border-radius: var(--radius-md);
+  box-shadow: 0 4px 24px rgba(20,24,29,0.08); padding: 22px;
+}
+.schedule-cal { flex: 1 1 270px; min-width: 240px; }
+.schedule-cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.schedule-cal-title { font-family: var(--font-display); font-weight: 600; font-size: 15px; }
+.schedule-nav {
+  width: 30px; height: 30px; border-radius: 50%; border: none; background: var(--warm-white);
+  color: var(--charcoal); cursor: pointer; font-size: 16px; line-height: 1; padding: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.schedule-nav:hover:not(:disabled) { background: var(--copper); color: var(--warm-white); }
+.schedule-nav:disabled { opacity: 0.25; cursor: default; }
+
+.schedule-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; justify-items: center; }
+.schedule-cal-dow { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--steel); padding-bottom: 6px; }
+.schedule-cal-day {
+  width: 100%; aspect-ratio: 1; border-radius: 50%; border: none; background: none;
+  font-family: var(--font-body); font-size: 13px; color: var(--charcoal); cursor: pointer;
+}
+.schedule-cal-day:hover:not(:disabled) { background: var(--warm-white); }
+.schedule-cal-day:disabled { color: var(--steel-light); cursor: default; }
+.schedule-cal-day.today { color: var(--frost); font-weight: 700; }
+.schedule-cal-day.selected, .schedule-cal-day.selected:hover { background: var(--copper); color: var(--warm-white); font-weight: 600; }
+
+.schedule-slots { flex: 1 1 220px; min-width: 200px; }
+.schedule-slots-hint { color: var(--steel); font-size: 13px; }
+.schedule-slots-title { font-family: var(--font-display); font-weight: 600; font-size: 15px; margin-bottom: 12px; }
+.schedule-slots-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; max-height: 270px; overflow-y: auto; padding-right: 2px; }
+.schedule-slot {
+  padding: 10px 8px; border-radius: 999px; border: 1.5px solid var(--steel-light); background: var(--surface);
+  font-family: var(--font-mono); font-size: 12.5px; color: var(--charcoal); cursor: pointer; text-align: center;
+}
+.schedule-slot:hover:not(:disabled) { background: var(--copper); border-color: var(--copper); color: var(--warm-white); }
+.schedule-slot-unavailable { color: var(--steel-light); text-decoration: line-through; cursor: default; background: var(--warm-white); border-color: transparent; }
+.schedule-slot-unavailable:hover { background: var(--warm-white); color: var(--steel-light); border-color: transparent; }
+
+
+.back-btn,
+.text-input-row button {
+  min-width: 84px; min-height: 48px; padding: 12px 18px; border-radius: var(--radius-sm); border: none;
+  background: var(--charcoal); color: var(--warm-white); font-family: var(--font-body); font-weight: 500;
+  font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+  transition: opacity 0.15s ease; flex-shrink: 0;
+}
+.back-btn:hover,
+.text-input-row button:hover { opacity: 0.85; }
+
+.text-input-row { display: flex; gap: 8px; min-width: 0; }
+.text-input-row input {
+  flex: 1; min-width: 0; padding: 12px 14px; border-radius: var(--radius-sm); border: 1.5px solid var(--steel-light);
+  font-family: var(--font-mono); font-size: 14px; background: var(--surface); color: var(--charcoal);
+}
+.text-input-row input:focus { outline: none; border-color: var(--frost); }
+
+.progress-rail { border-left: 1px solid var(--steel-light); padding: 32px 24px; display: flex; flex-direction: column; gap: 2px; }
+.progress-rail h2 { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--steel); margin: 0 0 12px; }
+
+.reading { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--warm-white); }
+.reading-label { font-size: 12px; color: var(--steel); }
+.reading-value { font-family: var(--font-mono); font-size: 13px; font-weight: 500; max-width: 150px; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.reading-value.empty { color: var(--steel-light); }
+.reading.active .reading-label { color: var(--copper); font-weight: 700; }
+
+.edit-btn { background: none; border: none; cursor: pointer; color: var(--steel); padding: 2px; margin-left: 6px; font-size: 12px; }
+.edit-btn:hover { color: var(--copper); }
+
+.footer-note { padding: 16px 32px; font-family: var(--font-mono); font-size: 11px; color: var(--steel); text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mic-btn.listening { animation: none; }
+  * { transition: none !important; }
+}
+
+@media (max-width: 780px) {
+  body { overflow-x: hidden; }
+
+  .app { width: 100%; }
+
+  .app-header {
+    padding: 18px 16px;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .brand { font-size: 17px; }
+  .brand-sub { font-size: 11px; line-height: 1.45; }
+  .header-actions { flex-shrink: 0; gap: 6px; }
+  .header-btn { min-height: 34px; padding: 7px 9px; font-size: 12px; }
+
+  .conversation-panel {
+    padding: 28px 16px 22px;
+    gap: 16px;
+  }
+
+  .dial-wrap { width: min(46vw, 176px); min-width: 150px; }
+
+  .mic-btn {
+    width: 76px;
+    height: 76px;
+  }
+
+  .mic-btn svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .dial-status {
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
+    font-size: 10px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .transcript {
+    min-height: 0;
+    max-width: 100%;
+    font-size: 17px;
+    line-height: 1.42;
+  }
+
+  .transcript .heard {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .options-row {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .back-btn { align-self: stretch; }
+
+  .option-grid {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .option-card {
+    flex-basis: 100%;
+    max-width: 100%;
+    min-height: 48px;
+    padding: 12px;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+
+  .schedule-widget {
+    flex-direction: column;
+    padding: 14px;
+    gap: 16px;
+  }
+
+  .schedule-slots-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-height: 220px;
+  }
+
+  .plan-card-features {
+    padding-left: 16px;
+  }
+
+  .text-input-row {
+    width: 100%;
+  }
+
+  .text-input-row input {
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  .progress-rail {
+    padding: 18px 16px 20px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 12px;
+  }
+
+  .progress-rail h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 2px;
+  }
+
+  .reading {
+    min-width: 0;
+    padding: 8px 0;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .reading-value {
+    max-width: 100%;
+    width: 100%;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .edit-btn {
+    margin-left: 0;
+    padding: 4px 0;
+  }
+
+  .footer-note {
+    padding: 12px 16px max(14px, env(safe-area-inset-bottom));
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+  /* BUG FIX (mobile responsiveness): the "S2S beta additions" block below
+     was appended after both media queries and never given a mobile pass -
+     .rt-ptt-toggle and .reading-change-btn kept their desktop sizing
+     (~32px and ~20px tall respectively), well under the ~44px touch
+     target every other tappable element on this page gets on mobile
+     (compare .back-btn/.text-input-row button's min-height: 48px above).
+     A mouse pointer doesn't care about that gap, which is why it only
+     showed up on a phone, not the laptop. */
+  .rt-ptt-toggle {
+    min-height: 44px;
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+
+  .reading-change-btn {
+    min-height: 32px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 460px) {
+  .conversation-panel { padding-top: 22px; }
+
+  .dial-wrap { width: min(48vw, 160px); min-width: 136px; }
+
+  .mic-btn {
+    width: 68px;
+    height: 68px;
+  }
+
+  .option-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .text-input-row {
+    flex-direction: column;
+  }
+
+  .text-input-row button {
+    width: 100%;
+  }
+
+  .progress-rail {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- S2S (Realtime) beta additions - additive only, cascaded UI above is untouched --- */
+.rt-connection-pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: var(--steel);
+  margin-top: 6px;
+}
+.rt-connection-pill[data-state="connected"] { color: var(--success); }
+.rt-connection-pill[data-state="reconnecting"] { color: var(--copper); }
+.rt-connection-pill[data-state="disconnected"] { color: var(--copper); }
+
+.rt-bargein-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: var(--frost);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  margin-top: 2px;
+}
+.rt-bargein-badge.visible { opacity: 1; }
+
+.rt-ptt-toggle {
+  display: block;
+  margin: 12px auto 0;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--steel-light);
+  background: var(--surface);
+  color: var(--steel);
+  font-family: var(--font-body);
+  font-size: 13px;
+  cursor: pointer;
+}
+.rt-ptt-toggle.active {
+  background: var(--copper);
+  color: var(--warm-white);
+  border-color: var(--copper);
+}
+
+.reading-change-btn {
+  margin-left: 8px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 999px;
+  border: 1px solid var(--steel-light);
+  background: transparent;
+  color: var(--frost);
+  cursor: pointer;
+}
+.reading-change-btn:hover { background: var(--frost); color: var(--warm-white); border-color: var(--frost); }
