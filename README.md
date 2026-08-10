@@ -32,7 +32,7 @@ https://github.com/user-attachments/assets/PASTE-YOUR-VIDEO-URL-HERE
 
 | Lead delivered by email | Callback booked on Google Calendar |
 |---|---|
-| ![Email lead screenshot](docs/email-lead.png) | ![Calendar invite screenshot](docs/calendar-invite.png) |
+| ![Email lead screenshot](docs/email-urgent.jpeg) | ![Calendar invite screenshot](docs/confirmation-email.jpeg) |
 
 ---
 
