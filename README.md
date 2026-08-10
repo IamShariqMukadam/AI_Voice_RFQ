@@ -27,7 +27,11 @@
 -->
 
 
-https://github.com/user-attachments/assets/4d73bdec-4237-4a03-987b-625a35165833
+<div align="center">
+  <video src="https://github.com/user-attachments/assets/4d73bdec-4237-4a03-987b-625a35165833" controls width="380">
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 
 
