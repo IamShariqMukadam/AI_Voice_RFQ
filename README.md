@@ -30,9 +30,9 @@ https://github.com/user-attachments/assets/PASTE-YOUR-VIDEO-URL-HERE
 
 *Full call walkthrough — greeting → caller answers by voice → live transcript updates → lead delivered.*
 
-| Callback booked on Google Calendar | Lead delivered by email |
+| Confirmation email sent to customer | Lead delivered by email | 
 |---|---|
-| ![Calendar invite screenshot](docs/confirmation-email.jpeg) |  ![Email lead screenshot](docs/email-urgent.jpeg) |
+| ![Confirmation email screenshot](docs/confirmation-email.jpeg) |  ![Email lead screenshot](docs/email-urgent.jpeg) |
 
 ---
 
