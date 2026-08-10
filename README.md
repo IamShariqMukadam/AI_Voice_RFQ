@@ -1,4 +1,8 @@
+<div align="center">
+
 # AI_Voice_RFQ
+
+</div>
 
 **A speech-to-speech voice bot that replaces a multi-step web quote form with a real phone-call-like conversation — built for a live HVAC client and hardened against real production calls.**
 
@@ -15,23 +19,27 @@
 <!--
   To embed a real playable video: open README.md on github.com in the web editor,
   drag your video file directly into the text box. GitHub uploads it and inserts a
-  raw URL, like: https://github.com/user-attachments/assets/xxxxxxxx-...
-  Paste that URL into the src="" below (replacing the placeholder) — using an
-  explicit <video> tag instead of the bare URL keeps it centered and sized to fit,
-  instead of GitHub's default full-width file-preview card.
+  raw URL on its own line, like:
+  https://github.com/user-attachments/assets/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+  Leave that URL on its own line, unwrapped by [ ]( ) — that's what makes GitHub
+  render it as an inline, clickable, playable video instead of a plain link.
+  Paste it below, replacing this comment block.
 -->
 
+
 <div align="center">
-  <video src="PASTE-YOUR-VIDEO-URL-HERE" controls width="380">
+  <video src="https://github.com/user-attachments/assets/4d73bdec-4237-4a03-987b-625a35165833" controls width="380">
     Your browser does not support the video tag.
   </video>
 </div>
 
+
+
 *Full call walkthrough — greeting → caller answers by voice → live transcript updates → lead delivered.*
 
-| Lead delivered by email | Callback booked on Google Calendar |
+| Confirmation email sent to customer | Lead delivered by email | 
 |---|---|
-| ![Email lead screenshot](docs/email-lead.png) | ![Calendar invite screenshot](docs/calendar-invite.png) |
+| ![Confirmation email screenshot](docs/confirmation-email.jpeg) |  ![Email lead screenshot](docs/email-urgent.jpeg) |
 
 ---
 
@@ -56,20 +64,6 @@ Caller talks (or types, as a fallback)
 | **Brain** | A deterministic finite state machine in plain Python — **not the model** — decides every question, price, and plan |
 | **Guarantee** | The model can never invent a price, a plan, or skip a question. The worst it can do is mishear you and ask you to repeat yourself |
 | **Deployment** | Standalone widget + API, embedded via one `<script>` tag — the client's original WordPress site and manual form are untouched |
-
----
-
-## 📞 What Happens After Pricing
-
-Once the bot quotes a plan, the caller picks how the call closes out — each path ends in a real, delivered outcome, not just a transcript:
-
-| Path | What happens |
-|---|---|
-| **Go with a plan** | Lead delivered by email immediately, no further questions |
-| **Arrange a call** | Caller picks *now* or a scheduled time. "Now" fires an urgent lead email instantly, plus an optional live outbound call via Twilio that bridges the caller straight to the business. A scheduled callback goes through the same slot-booking logic as a visit |
-| **Arrange a visit** | Caller picks a date/time within business hours; booked directly onto Google Calendar, with a database-level guard against two callers double-booking the same slot |
-
-The model never decides which of these happens on its own — it's still just calling `confirm_slot`/`schedule_appointment` with the caller's choice; the FSM owns the branching, the pricing, and every date/time validation.
 
 ---
 
