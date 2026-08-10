@@ -26,7 +26,10 @@
   Paste it below, replacing this comment block.
 -->
 
-https://github.com/user-attachments/assets/PASTE-YOUR-VIDEO-URL-HERE
+
+https://github.com/user-attachments/assets/4d73bdec-4237-4a03-987b-625a35165833
+
+
 
 *Full call walkthrough — greeting → caller answers by voice → live transcript updates → lead delivered.*
 
