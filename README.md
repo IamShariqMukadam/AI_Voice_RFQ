@@ -13,12 +13,18 @@
 > This bot is embedded on a **live paying client's website**. There's no public demo link here on purpose — every session opens a real, metered connection to OpenAI's Realtime API, and a recruiter (or a hundred of them) running test calls would put a real bill on the client's account. Instead:
 
 <!--
-  Replace the line below with your actual video embed, e.g.:
-  [![Watch the demo](docs/demo-thumbnail.png)](https://your-video-link)
-  or, if hosting on GitHub itself, drop the .mp4 into the repo and embed it directly —
-  GitHub renders uploaded video files inline in the README.
+  To embed a real playable video: open README.md on github.com in the web editor,
+  drag your video file directly into the text box. GitHub uploads it and inserts a
+  raw URL on its own line, like:
+  https://github.com/user-attachments/assets/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+  Leave that URL on its own line, unwrapped by [ ]( ) — that's what makes GitHub
+  render it as an inline, clickable, playable video instead of a plain link.
+  Paste it below, replacing this comment block.
 -->
-**▶️ [Watch the full call walkthrough](#)** — a complete voice session, start to finish: greeting → caller answers by voice → live transcript updates → lead delivered.
+
+https://github.com/user-attachments/assets/PASTE-YOUR-VIDEO-URL-HERE
+
+*Full call walkthrough — greeting → caller answers by voice → live transcript updates → lead delivered.*
 
 | Lead delivered by email | Callback booked on Google Calendar |
 |---|---|
