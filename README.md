@@ -67,6 +67,21 @@ Caller talks (or types, as a fallback)
 
 ---
 
+
+## 📞 What Happens After Pricing
+
+Once the bot quotes a plan, the caller picks how the call closes out — each path ends in a real, delivered outcome, not just a transcript:
+
+| Path | What happens |
+|---|---|
+| **Go with a plan** | Lead delivered by email immediately, no further questions |
+| **Arrange a call** | Caller picks *now* or a scheduled time. "Now" fires an urgent lead email instantly, plus an optional live outbound call via Twilio that bridges the caller straight to the business. A scheduled callback goes through the same slot-booking logic as a visit |
+| **Arrange a visit** | Caller picks a date/time within business hours; booked directly onto Google Calendar, with a database-level guard against two callers double-booking the same slot |
+
+The model never decides which of these happens on its own — it's still just calling `confirm_slot`/`schedule_appointment` with the caller's choice; the FSM owns the branching, the pricing, and every date/time validation.
+
+---
+
 ## 🧠 The Core Design Problem
 
 An LLM speaking freely can hallucinate a price, invent a plan that doesn't exist, or misquote availability. For something that turns directly into a real sales lead, that's not an acceptable failure mode — not occasionally, not ever.
